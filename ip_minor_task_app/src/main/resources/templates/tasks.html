@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<h1 th:text="#{todo}"></h1>
+
+
+<!-- IF LIST IS NOT EMPTY -->
+<div th:if="${not #lists.isEmpty(tasks)}">
+    <table>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.toString()}"></td>
+        </tr>
+    </table>
+</div>
+<!-- ELSE -->
+<div th:unless="${not #lists.isEmpty(tasks)}">
+    <div th:text="#{notodo}"></div>
+</div>
+
+</body>
+</html>

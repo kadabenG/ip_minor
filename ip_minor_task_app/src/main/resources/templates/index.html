@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<h1 th:text="#{greeting}"></h1>
+
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.eng}"></option>
+    <option value="nl" th:text="#{lang.nl}"></option>
+</select>
+
+<ul>
+    <li><a href="/tasks" th:text="#{alltasks}"></a></li>
+    <li><a href="/tasks/new" th:text="#{newtask}"></a></li>
+</ul>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("jajaja");
+        $("#locales").change(function () {
+            console.log("yes");
+            var selectedOption = $('#locales').val();
+            console.log(selectedOption);
+            if (selectedOption !== '' && window.location.href.match('.*\?lang\=..')) {
+                window.location.replace(window.location.href.substring(0, window.location.href.length - 8) + '?lang=' + selectedOption);
+            } else {
+                window.location.replace(window.location.href + '?lang=' + selectedOption);
+            }
+        })
+    });
+</script>
